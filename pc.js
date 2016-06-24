@@ -21,7 +21,7 @@
 		this.width = 0
 		this.height = 0
 		this.imgsrc = ""
-		this.callBack = function(text){
+		this.log = function(text){
 			console.log(text)
 		}
 		this.image2read = function(){
@@ -38,7 +38,7 @@
 					this.tempCount = 0
 				}
 			}
-			this.callBack('Read Complete ('+this.imgsrc+') : '+this.width+'x'+this.height)
+			this.log('Read Complete ('+this.imgsrc+') : '+this.width+'x'+this.height)
 			return this.resultArr
 		}
 		
@@ -48,7 +48,7 @@
 			this.canvas.width = this.width
 			this.canvas.height = this.height
 			this.imgsrc = "Blank"
-			this.callBack('Load Complete (Blank '+w+'x'+h+')')
+			this.log('Load Complete (Blank '+w+'x'+h+')')
 		}
 		
 		this.image2canvas = function(imgsrc){
@@ -60,7 +60,7 @@
 				parent.context.drawImage(imageObj, 0, 0)
 				parent.width = imageObj.width
 				parent.height = imageObj.height
-				parent.callBack('Load Complete ('+imgsrc+')')
+				parent.log('Load Complete ('+imgsrc+')')
 			}
 			imageObj.src = imgsrc
 			this.imgsrc = imgsrc
@@ -77,14 +77,14 @@
 			this.context.clearRect(0, 0, this.width, this.height)
 			//this.context.imageSmoothingEnabled = true 
 			this.context.putImageData(this.imageData, 0, 0)
-			this.callBack('Array2Canvas Complete ('+this.imgsrc+')')
+			this.log('Array2Canvas Complete ('+this.imgsrc+')')
 		}
 		
 		this.hist2read = function(arr){
 			//checking
 			for(var i=0; i<arr.length; i++){
 				if(arr[i] < 0 || arr[i] > 3){
-					this.callBack('Hist2read Failed : Wrong parameter('+arr[i]+') : ('+this.imgsrc+')')
+					this.log('Hist2read Failed : Wrong parameter('+arr[i]+') : ('+this.imgsrc+')')
 					return false
 				}
 			}
@@ -155,7 +155,7 @@
 			
 			context.stroke();
 			
-			this.callBack("Hist2canvas Complete")
+			this.log("Hist2canvas Complete")
 		}
 		
 		this.i2x = function(i){
